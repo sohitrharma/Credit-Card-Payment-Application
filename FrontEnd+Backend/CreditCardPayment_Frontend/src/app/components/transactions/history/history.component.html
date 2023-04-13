@@ -1,0 +1,60 @@
+<app-navbar></app-navbar>
+
+
+<div class="container py-5">
+  <header class="text-center text-white">
+</header>
+<h1 align="center">Transaction History</h1>
+<h6 align="center"><i>You dont have to remember the transaction made.. 🤐<br> We will do that for you.🤓🤭 </i></h6>
+  <div class="row py-5">
+    <div class="col-lg-13 mx-auto">
+      <div class="card rounded shadow border-0">
+        <div class="card-body p-5 bg-white rounded">
+          <div class="table-responsive">
+            <table  class="styled-table">
+              <thead>
+                <tr class="active-row">
+                    <th scope="col" [appSort]="transactions" data-order="desc"  data-name="cardNo">Card Number</th>
+                    <th scope="col" [appSort]="transactions" data-order="desc"  data-name="tranId">Transaction ID</th>
+                    <th scope="col" [appSort]="transactions" data-order="desc"  data-name="paymentAmount">Amount</th>
+                    <th scope="col" [appSort]="transactions" data-order="desc"  data-name="status">Status ID</th>
+                    <th scope="col" [appSort]="transactions" data-order="desc"  data-name="date">Date</th>
+                    <th scope="col" [appSort]="transactions" data-order="desc"  data-name="time"> Time</th>
+                  </tr>
+                  
+                </thead>
+                <tbody>
+                  <tr class="active-row" *ngFor="let transaction of transactions|  paginate: {
+                    itemsPerPage: 5,
+                    currentPage: page,
+                    totalItems: totalRecords
+                  }">
+                      <td>{{transaction.cardNo}}</td>
+                      <td>{{transaction.tranId}}</td>
+                      <td><span class="dollar">₹</span>{{transaction.paymentAmount}}</td>
+                      <td>{{transaction.status}}</td> 
+                      <td>{{transaction.date}}</td>
+                      <td>{{transaction.time}}</td>
+                    
+              </tbody>
+            </table>
+            <div>
+              <pagination-controls
+              previousLabel="Prev"
+              nextLabel="Next"
+              responsive="true" 
+              maxSize="5"
+              directionalLinks="true"
+              (pageChange)="page = $event"
+            ></pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

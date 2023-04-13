@@ -1,0 +1,56 @@
+<app-navbar></app-navbar>
+
+
+<div class="container py-5">
+    <header class="text-center text-white">
+  </header>
+  <h1 align="center">ALL ACCOUNTS</h1>
+  <button class="btn btn-success" style="width:100px" (click)="addAccount()"> Add+</button>
+    <div class="row py-5">
+      <div class="col-lg-13 mx-auto">
+        <div class="card rounded shadow border-0">
+          <div class="card-body p-5 bg-white rounded">
+            <div class="table-responsive">
+              <table  class="styled-table">
+                <thead>
+                  <tr class="active-row">
+                      <th scope="col" [appSort]="accounts" data-order="desc"  data-name="accountName">Account Name</th>
+                      <th >Account Number</th>
+                      <th >Account type</th>
+                      <th >Balance</th>
+                      <th scope="col" >Actions</th>
+                  </thead>
+                  <tbody>
+                    <!-- | async |  paginate: {
+                      itemsPerPage: 5,
+                      currentPage: page,
+                      totalItems: totalRecords
+                    }" -->
+                    <tr *ngFor="let account of accounts">
+                      <td>{{account.accountName}}</td>
+                      <td>{{account.accountNumber}}</td>
+                      <td>{{account.accountType}}</td>
+                      <td><span class="dollar">₹</span>{{account.balance}}</td>
+                      
+            <td><button (click)="deleteAccount(account.accountNumber)" class="btn btn-danger">Delete</button>
+                </tbody>
+              </table>
+              <!-- <div>
+                <pagination-controls
+                previousLabel="Prev"
+                nextLabel="Next"
+                responsive="true" 
+                maxSize="5"
+                directionalLinks="true"
+                (pageChange)="page = $event"
+              ></pagination-controls>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  

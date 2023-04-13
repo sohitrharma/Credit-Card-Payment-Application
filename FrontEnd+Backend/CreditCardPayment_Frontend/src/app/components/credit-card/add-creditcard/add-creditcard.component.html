@@ -1,0 +1,78 @@
+<app-navbar></app-navbar>
+  <div class="signup-form">
+    <form [formGroup]="creditcardsaveform" (ngSubmit)="onSubmit()">
+      <h2>Add new CreditCard</h2>
+
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-user"></i></span>
+          <input type="text" formControlName="cardName" placeholder="Enter Card Name" name="username"
+            class="form-control" id="cardName">
+            <small *ngIf="(CardName.touched) && (CardName.invalid)" class="text-danger">*required</small>
+        </div>
+        <!-- <div class="alert alert-danger" *ngIf="(CardName.touched) && (CardName.invalid)" style="margin-top: 5px;">
+         <small *ngIf="CardName.errors.required"> Required</small> 
+        </div> -->
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-sort-numeric-asc"></i></span>
+          <input type="number" formControlName="cardNumber" placeholder="Enter Card Number" name="cardNumber"
+            class="form-control" id="cardNumber">
+            <small *ngIf="(CardNumber.touched) && (CardNumber.errors.required)" class="text-danger">Required.</small>
+            <small *ngIf="CardNumber.errors.pattern" class="text-danger">Please enter valid 16 digit card number</small>
+            <!-- <small *ngIf="CardNumber.errors.pattern" class="text-danger">*Invalid</small> -->
+            <!-- <small *ngIf="CardNumber.errors.max" class="text-danger">*Invalid</small> -->
+          <!-- <div class="alert alert-danger" *ngIf="(CardNumber.touched) && (CardNumber.invalid)" >
+            <span *ngIf="CardNumber.errors.required">Card Number is Required</span>
+            <span *ngIf="CardNumber.errors.minlength">
+              Invalid Card Number
+            </span>
+            <span *ngIf="CardNumber.errors.maxlength">
+              Invalid Card Number
+            </span>
+          </div> -->
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-university"></i></span>
+          <input type="text" formControlName="bankName" placeholder="Enter Bank Name" name="bankName"
+            class="form-control" id="bankName">
+            <small *ngIf="(BankName.touched) && (BankName.invalid)" class="text-danger">*required</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-filter"></i></span>
+          <select class="form-control" formControlName="cardType" data-toggle="tooltip" data-placement="right"
+            title="Select Card Type">
+            <option value="null">--Select Card Type--</option>
+            <option value="VISA">VISA</option>
+            <option value="MASTERCARD">MASTERCARD</option>
+          </select>
+          <small *ngIf="(CardType.touched) && (CardType.invalid)" class="text-danger">*required</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+          <input type="date" required pattern="\d{4}-\d{2}-\d{2}" formControlName="cardExpiry" placeholder="Card Expiry"
+            name="cardExpiry" class="form-control" id="cardExpiry">
+            <small *ngIf="(ExpiryDate.touched) && (ExpiryDate.invalid)" class="text-danger">*required</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-credit-card-alt"></i></span>
+          <input type="number" formControlName="cvv" placeholder="Enter CVV" name="cvv" class="form-control" id="cvv">
+          <small *ngIf="(CVV.touched) && (CVV.invalid)" class="text-danger">*required</small>
+          <small *ngIf="CVV.errors.min" class="text-danger">Pleasse enter 3 digit CVV</small>
+          <small *ngIf="CVV.errors.max" class="text-danger">Pleasse enter 3 digit CVV</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block btn-lg btn-success">Submit</button>
+      </div>
+    </form>
+  </div>

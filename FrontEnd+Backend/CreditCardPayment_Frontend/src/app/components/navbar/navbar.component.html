@@ -1,0 +1,29 @@
+
+
+<nav class="navbar navbar-expand-xl navbar-light bg-light">
+	<a  class="navbar-brand"><i class="fa fa-credit-card"></i>CRED |<b> APP</b></a>
+	<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<!-- Collection of nav links, forms, and other content for toggling -->
+	<div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
+		<div class="navbar-nav">
+			<a [routerLink]="['/home']" class="nav-item nav-link active">Home</a>
+			<a [routerLink]="['/creditcards',userId]" class="nav-item nav-link">CreditCards</a>
+			<a [routerLink]="['/accounts',userId]" class="nav-item nav-link">Accounts</a>
+			<a [routerLink]="['/transactions',userId]" class="nav-item nav-link">Transactions</a>
+			<a [routerLink]="['/contact-us']" class="nav-item nav-link">Contact Us!</a>
+		</div>
+		<div class="navbar-nav ml-auto">
+			<div class="nav-item dropdown">
+				<a data-toggle="dropdown" class="nav-link dropdown-toggle user-action"> Your Account <b class="caret"></b></a>
+				<div class="dropdown-menu">
+					<a [routerLink]="['/my-profile']" (click)="getUser()" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
+					<a [routerLink]="['/edit-customer']" class="dropdown-item"><i class="fa fa-cog "></i>Edit Profile</a>
+					<a (click)="logout()" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</nav>
+                       

@@ -1,0 +1,56 @@
+<app-navbar></app-navbar>
+
+<div class="container py-5">
+    <header class="text-center text-white">
+</header>
+<h1 align="center">Payment</h1>
+<h6 align="center"><i>Awesome !!!!Payement Done. </i></h6>
+    <div class="row py-5">
+      <div class="col-lg-13 mx-auto">
+        <div class="card rounded shadow border-0">
+          <div class="card-body p-5 bg-white rounded">
+            <div class="table-responsive">
+              <table  class="styled-table">
+                <thead>
+                  <tr class="active-row">
+                      <th scope="col" [appSort]="payments" data-order="desc"  data-name="paymentId">Payment ID</th>
+                      <th scope="col" [appSort]="payments" data-order="desc" data-name="date" >payment date</th>
+                      <th scope="col" [appSort]="payments" data-order="desc" data-name="status">status</th>
+                      <th scope="col" [appSort]="payments" data-order="desc" data-name="paymentAmount" >Amount Number</th>
+                      
+                    </tr>
+
+                  </thead>
+                  <tbody>
+                    <tr class="active-row" *ngFor="let payment of payments |  paginate: {
+                      itemsPerPage: 5,
+                      currentPage: page,
+                      totalItems: totalRecords
+                    }">
+                        <td>{{payment.paymentId}}</td>
+                        <td>{{payment.date}}</td>
+                        <td>{{payment.status}}</td>
+                        <td><span class="dollar">₹</span><span>{{payment.paymentAmount}}</span></td>
+                </tbody>
+              </table>
+              <div>
+                <pagination-controls
+                previousLabel="Prev"
+                nextLabel="Next"
+                responsive="true" 
+                maxSize="5"
+                directionalLinks="true"
+                (pageChange)="page = $event"
+              ></pagination-controls>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
+  
+  

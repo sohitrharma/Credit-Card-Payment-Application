@@ -1,0 +1,122 @@
+<app-navbar></app-navbar>
+
+  <div class="container-xl">
+    <h2 style="margin: auto"> CreditCard Details</h2>
+    <button class="btn btn-success" style="width:100px" (click)="addCreditCard()"> Add+</button>
+    <div class="row" [hidden]="!deleteMessage">
+
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4">
+        <div class="alert alert-info alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <strong>CreditCard Data Deleted!</strong>
+        </div>
+      </div>
+      <div class="col-sm-4"></div>
+    </div>
+    <div class="table-responsive">
+      <div class="table-wrapper">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Card Name</th>
+              <th>Card Number</th>
+              <th>Card Type</th>
+              <th>Bank Name</th>
+              <th>Expiry Date</th>
+              <th>CVV</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let creditcard of creditcards">
+              <td>{{creditcard.cardName}}</td>
+              <td>{{creditcard.cardNumber}}</td>
+              <td>{{creditcard.cardType}}</td>
+              <td>{{creditcard.bankName}}</td>
+              <td>{{creditcard.cardExpiry}}</td> 
+              <td>{{creditcard.cvv}}</td>
+              <td><button class="btn btn-danger" (click)="deleteCreditCard(creditcard.cardId)"> Delete</button>
+                <button class="btn btn-primary" (click)="updateCreditCard(creditcard.cardId)" style="margin-left: 10px;"
+                  data-toggle="modal" data-target="#myModal"> Update</button>
+                <a [routerLink]="['/payment/add',creditcard.cardId]"><button class="btn btn-primary"
+                    style="margin-left: 10px;"> Pay Now</button></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- <div>
+          <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true" maxSize="5"
+            directionalLinks="true" (pageChange)="page = $event"></pagination-controls>
+        </div> -->
+
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form [formGroup]="creditcardupdateform" #abc (ngSubmit)="updatecc(abc)">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title" style="text-align: center">Update CreditCard</h4>
+
+          </div>
+          <!-- *ngFor="let creditcard of creditcardlist " -->
+          <!-- Modal body -->
+          <div class="modal-body" *ngFor="let creditcard of creditcardlist ">
+            <div [hidden]="isupdated">
+
+              <input type="hidden" class="form-control" formControlName="cardId" [(ngModel)]="creditcard.cardId">
+              <div class="form-group">
+                <label for="name">Card Name</label>
+                <input type="text" class="form-control" formControlName="cardName" [(ngModel)]="creditcard.cardName">
+              </div>
+
+              <div class="form-group">
+                <label for="name">Card Number</label>
+                <input type="number" class="form-control" formControlName="cardNumber"
+                  [(ngModel)]="creditcard.cardNumber">
+              </div>
+
+              <!-- {{creditcard.cardNumber}} -->
+
+              <div class="form-group">
+                <label for="name">Card Type</label>
+                <select class="form-control" formControlName="cardType" required [(ngModel)]="creditcard.cardType">
+                  <option value="VISA" [selected]="'VISA' == creditcard.cardType">VISA</option>
+                  <option value="MASTERCARD" [selected]="'MASTERCARD' == creditcard.cardType">MASTERCARD</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="name">Bank Name</label>
+                <input type="text" class="form-control" formControlName="bankName" [(ngModel)]="creditcard.bankName">
+              </div>
+
+              <div class="form-group">
+                <label for="name">Expiry Date</label>
+                <input type="date" class="form-control" formControlName="cardExpiry"
+                  [(ngModel)]="creditcard.cardExpiry">
+              </div>
+              <div class="form-group">
+                <label for="name">Card CVV</label>
+                <input type="number" class="form-control" formControlName="cvv" [(ngModel)]="creditcard.cvv">
+              </div>
+            </div>
+            <div [hidden]="!isupdated">
+              <h4>CreditCard Details Updated!</h4>
+            </div>
+
+          </div>
+          <!-- <input type="text" name="text"> -->
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success" [hidden]="isupdated">Update</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="changeisUpdate()">Close</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
